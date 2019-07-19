@@ -1,0 +1,21 @@
+{% extends 'picks/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Home
+{% endblock %}
+
+{% block body_block %}
+    {% if user.is_authenticated %}
+        <h2> Pick list place holder </h2>
+    {% else %}
+        <form id="login" method="post" action="login/">
+        {% csrf_token %}
+        Username: <input type="text" name="username" vlue="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
+        <input type="submit" value="submit" />
+    </form>
+    {% endif %}
+{% endblock %}
