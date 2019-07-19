@@ -7,7 +7,9 @@ class Pick(models.Model):
     date_sold = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     sale_price = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     profit_loss = models.DecimalField(max_digits=12, decimal_places=2)
-    percent_profit = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
-    speed_of_sale = models.IntegerField(blank=True)
+    percent_profit = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    speed_of_sale = models.IntegerField(blank=True, null=True)
     picture = models.ImageField(upload_to='item_images', blank=True)
     
+    def __str__(self):
+        return self.item
