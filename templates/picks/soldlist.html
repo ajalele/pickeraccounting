@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Home
+    Sold List
 {% endblock %}
 
 {% block body_block %}
@@ -14,28 +14,32 @@
                     <th>Date Purchased</th>
 					<th>Item</th>
 					<th>Purchase Price</th>
+                    <th>Date Sold</th>
+                    <th>Sale Price</th>
 					<th>Profit/Loss</th>
-                    <th>Sold</th>
+                    <th>Percent Profit</th>
 				</tr>
 				{% for pick in picks %}
 				<tr>
-					<td>
+                    <td>
                         {% if pick.picture %}
-                            <img src="media/{{ pick.picture }}" alt="{{ pick.item }} image">
+                            <img src="../media/{{ pick.picture }}" alt="{{ pick.item }} image">
                         {% else %}
                             "No Image"
                         {% endif %}
                     </td>
-                    <td>{{ pick.date_bought }}</td>
+					<td>{{ pick.date_bought }}</td>
 					<td>{{ pick.item }}</td>
 					<td>{{ pick.purchase_price }}</td>
+                    <td>{{ pick.date_sold }}</td>
+                    <td>{{ pick.sale_price }}</td>
 					<td>{{ pick.profit_loss }}</td>
-                    <td><a href="{% url 'picks:soldpick' pick.id %}">Sold</a></td>
+                    <td>{{ pick.percent_profit }}</td>
                 </tr>
 				{% endfor %}
 			</table>
 		{% else %}
-			<strong>You don't have any picks.</strong>
+			<strong>You don't have any sold picks.</strong>
 		{% endif %}
 		</div>
 {% endblock %}

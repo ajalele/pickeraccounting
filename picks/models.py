@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 class Pick(models.Model):
@@ -13,3 +14,11 @@ class Pick(models.Model):
     
     def __str__(self):
         return self.item
+        
+        
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    pick = models.ManyToManyField(Pick, blank=True, null=True)
+    
+    def __str__(self):
+        return self.user.username
